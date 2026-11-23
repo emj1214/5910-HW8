@@ -11,8 +11,23 @@ public class Controller {
 	 * 7. Read what user types
 	 */
 
-	public Controller() {
+	protected Controller() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	/*
+	 * Runs the program
+	 */
+	private void run() {
+		
+		// calls fileinforeader, which reads the input files when constructed
+		
+		// calls main menu method, which prints main menu and handles user input
+		
+	}
+	
+	private void mainMenu() {
+		//TODO
 	}
 
 	public static void main(String[] args) {
