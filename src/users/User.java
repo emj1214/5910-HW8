@@ -12,7 +12,7 @@ package users;
 
 /**
  * Describes the characteristics common to all Users. User is the superclass for Student,
- * Professor, Admin -- i.e., people at the school.
+ * Professor, Admin -- i.e., people at the school. Users do not get constructed.
  */
 public abstract class User {
 
@@ -75,7 +75,7 @@ public abstract class User {
 	 *
 	 * @return the person's id
 	 */
-	public String getId() {
+	public String getID() {
 		//returns the user's ID as a String
 		return this.id;
 	}

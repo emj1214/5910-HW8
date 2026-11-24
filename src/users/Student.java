@@ -10,7 +10,22 @@ package users;
  * examples from class and other sources for methods. ChatGPT helped me get GitHub set up.
  */
 
+/**
+ * 1. View all courses
+ * 2. Add courses
+ * 3. Drop courses
+ * 4. Block adding a course already on list
+ * 5. Block adding a course not in system
+ * 6. Block adding a course with a time conflict
+ * 7. Block dropping a course not on the list
+ * 8. Check course schedule
+ * 9. View grades
+ */
+
+
 import java.util.*;
+import courses.Course;
+import files.Intelligence;
 
 /**
  * A Student is a type of User. "extends User" makes User the parent class of Student, providing
@@ -51,7 +66,6 @@ public class Student extends User {
 
 	/**
 	 * Gives the type of user. Overrides User class
-	 *
 	 * @return the word "student"
 	 */
 	@Override
@@ -62,18 +76,38 @@ public class Student extends User {
 	//TODO align with YW on the use of the Course class
 
 	/**
-	 * Finds a course by
+	 * Hands back an ArrayList of all courses
+	 * @return Array list of all courses
 	 */
-	public "[Waiting on Course class]"
+	public ArrayList<Course> getAllCourses(Intelligence courses) {
 
-	findCourse()
+		//this
+		return courses.getCourses();
+	}
 
-	//this
+	public String addCourseToSchedule() {
+
+		//this
 		return null;
+	}
+
+	public String dropCourse() {
+
+		//this
+		return null;
+	}
+
+	/**
+	 * Gives the classes of this Student, as pieces, in the order taken.
+	 * @return the class list
+	 */
+	public ArrayList<Course> getEnrolledCourses() {
+		//the class list of this student
+		return this.courses;
+	}
 
 	/**
 	 * Gives a line of text including the user's name and id and their courses.
-	 *
 	 * @return the name and ID for the user (such as "Hammans Stallings (id: 141)")
 	 */
 	@Override
@@ -82,12 +116,9 @@ public class Student extends User {
 		return super.toString() + ", classes: " + this.courses;
 	}
 
-
-
-
-
-
-
-
-
 }
+
+
+
+
+

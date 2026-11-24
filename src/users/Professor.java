@@ -10,11 +10,17 @@ package users;
  * examples from class and other sources for methods. ChatGPT helped me get GitHub set up.
  */
 
+/**
+ * 1. View course info
+ * 2. View student lists
+ */
+
 import java.util.*;
+import courses.Course;
 
 /**
- * A Student is a type of User. "extends User" makes User the parent class of Student, providing
- * Student with each field and method from User.
+ * A Professor is a type of User. "extends User" makes User the parent class of Student, providing
+ * Professor with each field and method from User.
  */
 public class Professor extends User {
 
@@ -48,6 +54,21 @@ public class Professor extends User {
 	}
 
 	//methods
+
+	/**
+	 *
+	 * @return
+	 */
+	public ArrayList<Course> viewCourses() {
+
+		return null;
+	}
+
+	public ArrayList<Student> viewStudentList() {
+
+		return null;
+	}
+
 
 	/**
 	 * Gives the type of user. Overrides User class
