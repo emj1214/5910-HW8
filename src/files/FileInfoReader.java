@@ -95,7 +95,9 @@ class FileInfoReader {
 				 * confirm format for each line
 				 * expected format: "student ID; student name; student username; password; course ID: course grade (could be multiple)"
 				 * 
-				 * 
+				 * if there are at least 5 inputs, assuming the correct order, creates the student object
+				 * if the student doesn't already exist, it will add the student to the database
+				 * if the student already exists, it will print a friendly message
 				 */
 				
 				// split string into array
@@ -136,11 +138,17 @@ class FileInfoReader {
 						courseData[1] = courseData[1].strip();
 						courseGrades.add(new ArrayList<>(Arrays.asList(courseData)));
 						
-						//TODO: actually create the student object
-						Student student = new Student();
+						// create a student object
+						Student student = new Student(); //TODO add inputs
 						
 						// if student doesn't exist already, add.
-						
+						if (~(intel.containsStudent(student))) { // uses Student.equals() method for "contains" comparisons
+							intel.addStudent(student);
+						}
+						else { // student already exists, can't add
+							System.out.println("Sorry, " + student.name + " already exists in this database.\n");
+							break;
+						}
 						
 					}
 					

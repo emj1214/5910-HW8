@@ -146,7 +146,7 @@ class Intelligence {
 	 * @param student: the student object to remove from the intel list
 	 * @return true if student is already in intel
 	 */
-	protected boolean removeStudent(Student student) {
+	protected boolean containsStudent(Student student) {
 		return students.contains(student);
 	}
 	
@@ -155,7 +155,7 @@ class Intelligence {
 	 * @param professor: the professor object to remove from the intel list
 	 * @return true if professor is already in intel
 	 */
-	protected boolean removeProfessor(Professor prof) {
+	protected boolean containsProfessor(Professor prof) {
 		return profs.contains(prof);
 	}
 	
@@ -164,7 +164,7 @@ class Intelligence {
 	 * @param admin: the admin object to remove from the intel list
 	 * @return true if admin is already in intel
 	 */
-	protected boolean removeAdmin(Admin admin) {
+	protected boolean containsAdmin(Admin admin) {
 		return admins.contains(admin);
 	}
 
@@ -174,7 +174,7 @@ class Intelligence {
 	 * @param course: the course object to remove from the intel list
 	 * @return true if course is already in intel
 	 */
-	protected boolean removeCourse(Course course) {
+	protected boolean containsCourse(Course course) {
 		return courses.contains(course);
 	}
 
