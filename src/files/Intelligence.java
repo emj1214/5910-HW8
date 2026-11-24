@@ -41,21 +41,21 @@ public class Intelligence {
 	/***
 	 * returns the students array list
 	 */
-	protected ArrayList<Student> getStudent() {
+	public ArrayList<Student> getStudent() {
 		return students;
 	}
 	
 	/***
 	 * returns the professors array list
 	 */
-	protected ArrayList<Professor> getProfessor() {
+	public ArrayList<Professor> getProfessor() {
 		return profs;
 	}
 	
 	/***
 	 * returns the admins array list
 	 */
-	protected ArrayList<Admin> getAdmins() {
+	public ArrayList<Admin> getAdmins() {
 		return admins;
 	}
 
@@ -63,7 +63,7 @@ public class Intelligence {
 	/***
 	 * returns the courses array list
 	 */
-	protected ArrayList<Course> getCourses() {
+	public ArrayList<Course> getCourses() {
 		return courses;
 	}
 	
@@ -74,7 +74,7 @@ public class Intelligence {
 	 * adds a student to the students array list
 	 * @param student: the student object to add to the intel list
 	 */
-	protected void addStudent(Student student) {
+	public void addStudent(Student student) {
 		students.add(student);
 	}
 	
@@ -82,7 +82,7 @@ public class Intelligence {
 	 * adds a professor to the professors array list
 	 * @param professor: the professor object to add to the intel list
 	 */
-	protected void addProfessor(Professor prof) {
+	public void addProfessor(Professor prof) {
 		profs.add(prof);
 	}
 	
@@ -90,7 +90,7 @@ public class Intelligence {
 	 * adds an admin to the admins array list
 	 * @param admin: the admin object to add to the intel list
 	 */
-	protected void addAdmin(Admin admin) {
+	public void addAdmin(Admin admin) {
 		admins.add(admin);
 	}
 
@@ -99,7 +99,7 @@ public class Intelligence {
 	 * adds a course to the courses array list
 	 * @param course: the course object to add to the intel list
 	 */
-	protected void addCourse(Course course) {
+	public void addCourse(Course course) {
 		courses.add(course);
 	}
 	
@@ -110,7 +110,7 @@ public class Intelligence {
 	 * removes a student from the students array list
 	 * @param student: the student object to remove from the intel list
 	 */
-	protected void removeStudent(Student student) {
+	public void removeStudent(Student student) {
 		students.remove(student);
 	}
 	
@@ -118,7 +118,7 @@ public class Intelligence {
 	 * removes a professor from the professors array list
 	 * @param professor: the professor object to remove from the intel list
 	 */
-	protected void removeProfessor(Professor prof) {
+	public void removeProfessor(Professor prof) {
 		profs.remove(prof);
 	}
 	
@@ -126,7 +126,7 @@ public class Intelligence {
 	 * removes an admin from the admins array list
 	 * @param admin: the admin object to remove from the intel list
 	 */
-	protected void removeAdmin(Admin admin) {
+	public void removeAdmin(Admin admin) {
 		admins.remove(admin);
 	}
 
@@ -135,7 +135,7 @@ public class Intelligence {
 	 * removes a course from the courses array list
 	 * @param course: the course object to remove from the intel list
 	 */
-	protected void removeCourse(Course course) {
+	public void removeCourse(Course course) {
 		courses.remove(course);
 	}
 	
@@ -146,7 +146,7 @@ public class Intelligence {
 	 * @param student: the student object to remove from the intel list
 	 * @return true if student is already in intel
 	 */
-	protected boolean containsStudent(Student student) {
+	public boolean containsStudent(Student student) {
 		return students.contains(student);
 	}
 	
@@ -155,7 +155,7 @@ public class Intelligence {
 	 * @param professor: the professor object to remove from the intel list
 	 * @return true if professor is already in intel
 	 */
-	protected boolean containsProfessor(Professor prof) {
+	public boolean containsProfessor(Professor prof) {
 		return profs.contains(prof);
 	}
 	
@@ -164,7 +164,7 @@ public class Intelligence {
 	 * @param admin: the admin object to remove from the intel list
 	 * @return true if admin is already in intel
 	 */
-	protected boolean containsAdmin(Admin admin) {
+	public boolean containsAdmin(Admin admin) {
 		return admins.contains(admin);
 	}
 
@@ -174,7 +174,7 @@ public class Intelligence {
 	 * @param course: the course object to remove from the intel list
 	 * @return true if course is already in intel
 	 */
-	protected boolean containsCourse(Course course) {
+	public boolean containsCourse(Course course) {
 		return courses.contains(course);
 	}
 
