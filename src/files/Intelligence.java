@@ -41,21 +41,21 @@ class Intelligence {
 	/***
 	 * returns the students array list
 	 */
-	protected ArrayList<Student> getStudent() {
+	public ArrayList<Student> getStudent() {
 		return students;
 	}
 	
 	/***
 	 * returns the professors array list
 	 */
-	protected ArrayList<Professor> getProfessor() {
+	public ArrayList<Professor> getProfessor() {
 		return profs;
 	}
 	
 	/***
 	 * returns the admins array list
 	 */
-	protected ArrayList<Admin> getAdmins() {
+	public ArrayList<Admin> getAdmins() {
 		return admins;
 	}
 
@@ -63,7 +63,7 @@ class Intelligence {
 	/***
 	 * returns the courses array list
 	 */
-	protected ArrayList<Course> getCourses() {
+	public ArrayList<Course> getCourses() {
 		return courses;
 	}
 
