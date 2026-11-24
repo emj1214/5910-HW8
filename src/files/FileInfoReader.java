@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 
-class FileInfoReader {
+public class FileInfoReader {
 	
 	public FileInfoReader() {
 		// TODO Auto-generated constructor stub
@@ -16,7 +16,7 @@ class FileInfoReader {
 	 * @return buffered reader
 	 * @implNote WARNING this method opens a BufferedReader but does not close it. Call closeFile() to close the file.
 	 */
-	protected BufferedReader readFile(String filePath) {
+	private BufferedReader readFile(String filePath) {
 		
 		// create file object from file path
 		File inputFile = new File(filePath);
@@ -152,9 +152,7 @@ class FileInfoReader {
 						
 					}
 					
-					
 				}
-				
 				
 			}
 		}
@@ -167,10 +165,45 @@ class FileInfoReader {
 	/***
 	 * reads and processes files
 	 */
-	protected void processFiles(String studentFile, String profFile, String adminFile, String courseFile, Intelligence intel) {
-		// takes in student, prof, admin and course files
-		// calls respective read, process, and close methods
-		// saves objects to intel.<objlist> for each obj type
+	public void processFiles(String studentFile, String profFile, String adminFile, String courseFile, Intelligence intel) {
+		
+		// if any input is null, print message and quit
+		if (studentFile==null 
+				|| profFile == null
+				|| adminFile == null
+				|| courseFile == null ) {
+			System.out.println("All files must exist.\n");
+			return;
+		}
+		
+		// process students - open reader, try to process, close reader
+		BufferedReader studentReader = readFile(studentFile);
+		if (studentReader!=null) {
+			processStudents(studentReader, intel);
+		}
+		closeFile(studentReader);
+		
+		// process professors - open reader, try to process, close reader
+		BufferedReader profReader = readFile(profFile);
+		if (profReader!=null) {
+			// TODO process profs
+		}
+		closeFile(profReader);
+		
+		// process admins - open reader, try to process, close reader
+		BufferedReader adminReader = readFile(adminFile);
+		if (adminReader!=null) {
+			// TODO process admins
+		}
+		closeFile(adminReader);
+		
+		// process courses - open reader, try to process, close reader
+		BufferedReader courseReader = readFile(courseFile);
+		if (courseReader!=null) {
+			// TODO process courses
+		}
+		closeFile(courseReader);
+		
 	}
 	
 	

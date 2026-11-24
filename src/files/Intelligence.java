@@ -2,7 +2,7 @@ package files;
 
 import java.util.*;
 
-class Intelligence {
+public class Intelligence {
 	
 	// instance vars
 	
