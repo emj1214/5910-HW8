@@ -21,6 +21,15 @@ public class Admin extends User {
     }
 
 /**
+ * Returns the type of user.
+ * @return "admin"
+ */
+@Override
+public String userType() {
+    return "admin";
+}
+	
+/**
  * Returns all courses in the system.
  * @return list of courses
  */
@@ -224,4 +233,5 @@ public boolean deleteProfessor(String professorId) {
     }
 
     return false;
+	}
 }
