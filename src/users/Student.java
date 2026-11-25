@@ -1,0 +1,124 @@
+package users;
+
+/**
+ * @author: Hammans Stallings
+ * @author: Emma Johnson
+ * @author: Yongling Wu
+ *
+ * Resources used outside course materials: I used Claude for conceptual help around determining
+ * what would be shared and what could remain in the child classes. It helped me find relevant
+ * examples from class and other sources for methods. ChatGPT helped me get GitHub set up.
+ */
+
+/**
+ * 1. View all courses
+ * 2. Add courses
+ * 3. Drop courses
+ * 4. Block adding a course already on list
+ * 5. Block adding a course not in system
+ * 6. Block adding a course with a time conflict
+ * 7. Block dropping a course not on the list
+ * 8. Check course schedule
+ * 9. View grades
+ */
+
+
+import java.util.*;
+import courses.Course;
+import files.Intelligence;
+
+/**
+ * A Student is a type of User. "extends User" makes User the parent class of Student, providing
+ * Student with each field and method from User.
+ */
+public class Student extends User {
+
+	//instance variables
+
+	//TODO align with YW on the use of the Course class
+
+	/**
+	 * A private ArrayList of type Course called "courses" the Student has signed up for.
+	 */
+	private ArrayList<Course> courses;
+
+	//constructor
+
+	/**
+	 * Public method that makes one student with no courses yet but does have an ArrayList of
+	 * type Course called "courses" associated with the created Student object.
+	 *
+	 * @param name     the String full name of the user such as "Hammans Stallings"
+	 * @param id       the String id of the user such as "141"
+	 * @param userName the String username of the user such as "testStudent01"
+	 * @param password the String password of the user such as "password590"
+	 */
+	public Student(String name, String id, String userName, String password) {
+
+		//hands the User constructor the following values
+		//these are private values in User so only code there can store it
+		super(name, id, userName, password);
+		//this makes an empty ArrayList of type Courses
+		this.courses = new ArrayList<Course>();
+	}
+
+	//methods
+
+	/**
+	 * Gives the type of user. Overrides User class
+	 * @return the word "student"
+	 */
+	@Override
+	public String userType() {
+		return "student";
+	}
+
+	//TODO align with YW on the use of the Course class
+
+	/**
+	 * Hands back an ArrayList of all courses
+	 * @return Array list of all courses
+	 */
+	public ArrayList<Course> getAllCourses(Intelligence courses) {
+
+		//this
+		return courses.getCourses();
+	}
+
+	public String addCourseToSchedule() {
+
+		//this
+		return null;
+	}
+
+	public String dropCourse() {
+
+		//this
+		return null;
+	}
+
+	/**
+	 * Gives the classes of this Student, as pieces, in the order taken.
+	 * @return the class list
+	 */
+	public ArrayList<Course> getEnrolledCourses() {
+		//the class list of this student
+		return this.courses;
+	}
+
+	/**
+	 * Gives a line of text including the user's name and id and their courses.
+	 * @return the name and ID for the user (such as "Hammans Stallings (id: 141)")
+	 */
+	@Override
+	public String toString() {
+		//returns the name and id and classes of the Student object the method is called about
+		return super.toString() + ", classes: " + this.courses;
+	}
+
+}
+
+
+
+
+
