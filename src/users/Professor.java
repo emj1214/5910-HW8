@@ -17,6 +17,7 @@ package users;
 
 import java.util.*;
 import courses.Course;
+import files.Intelligence;
 
 /**
  * A Professor is a type of User. "extends User" makes User the parent class of Student, providing
@@ -43,12 +44,14 @@ public class Professor extends User {
 	 * @param id       the String id of the user such as "141"
 	 * @param userName the String username of the user such as "testStudent01"
 	 * @param password the String password of the user such as "password590"
+	 * @param intel    the Intelligence object that keeps the lists of students, professors, admins
+	 *                 and courses
 	 */
-	public Professor(String name, String id, String userName, String password) {
+	public Professor(String name, String id, String userName, String password, Intelligence intel) {
 
-		//hands the User constructor the following values
-		//these are private values in User so only code there can store it
-		super(name, id, userName, password);
+		//all variables but intel are private values in User so only code there can store them
+		//the intel variable is protected so it can be used by child classes
+		super(name, id, userName, password, intel);
 		//this makes an empty ArrayList of type Courses
 		this.courses = new ArrayList<Course>();
 	}

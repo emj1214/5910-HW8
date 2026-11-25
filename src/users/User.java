@@ -10,6 +10,8 @@ package users;
  * examples from class and other sources for methods. ChatGPT helped me get GitHub set up.
  */
 
+import files.Intelligence;
+
 /**
  * Describes the characteristics common to all Users. User is the superclass for Student,
  * Professor, Admin -- i.e., people at the school. Users do not get constructed.
@@ -38,24 +40,36 @@ public abstract class User {
 	 */
 	private String password;
 
+	/**
+	 * The Intelligence object that keeps the lists of students, professors, admins and courses. It is
+	 * used by the three child classes so it is kept in the parent class. It is protected so child
+	 * classes can use it by name. We chose to have this variable protected because child classes
+	 * work with it in most of their methods. The other four variables are facts about one person
+	 * which the child classes only read.
+	 */
+	protected Intelligence intel;
+
 	//constructor
 
 	/**
-	 * This sets the four values each kind of person as the school has.
+	 * This sets the five values each kind of person at the school has.
 	 *
 	 * @param name     the person's full name, such as "StudentName1" or "Hammans Stallings"
 	 * @param id       the person's id, such as "001"
 	 * @param userName the person's username typed at login, such as "testStudent01"
-	 * @param password the persons' password typed at login, such as "password590"
+	 * @param password the person's password typed at login, such as "password590"
+	 * @param intel		 the Intelligence object that keeps the lists of students, professors, admins
+	 *                 and courses
 	 */
-	public User(String name, String id, String userName, String password) {
+	public User(String name, String id, String userName, String password, Intelligence intel) {
 
-		//stores the name, id, username, and password handed in the instance variable of the
+		//stores the name, id, username, password, and intel handed in the instance variables of the
 		//object being made
 		this.name = name;
 		this.id = id;
 		this.userName = userName;
 		this.password = password;
+		this.intel = intel;
 	}
 
 	//accessor/mutator methods

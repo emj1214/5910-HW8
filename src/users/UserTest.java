@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import files.Intelligence;
 
 class UserTest {
 
@@ -14,15 +15,18 @@ class UserTest {
 
 	Admin testAdmin;
 
-
 	@BeforeEach
 	void setUp() throws Exception {
 
-	testStudent = new Student("Hammans Stallings", "101", "HStallings",
-					"456123");
-	testProfessor = new Professor("Emma Johnson", "102", "EJohnson",
-					"DEFABC");
-	testAdmin = new Admin("Yongling Wu", "103", "YWu", "OPQLMN");
+		//creates a new Intelligence object named testIntel
+		Intelligence testIntel = new Intelligence();
+
+		testStudent = new Student("Hammans Stallings", "101", "HStallings",
+						"456123", testIntel);
+		testProfessor = new Professor("Emma Johnson", "102", "EJohnson",
+						"DEFABC", testIntel);
+		testAdmin = new Admin("Yongling Wu", "103", "YWu",
+						"OPQLMN", testIntel);
 	}
 
 	@org.junit.jupiter.api.Test
