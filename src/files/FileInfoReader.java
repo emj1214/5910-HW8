@@ -2,6 +2,8 @@ package files;
 
 import java.io.*;
 import java.util.*;
+import users.*;
+import courses.*;
 
 
 public class FileInfoReader {
@@ -139,14 +141,14 @@ public class FileInfoReader {
 						courseGrades.add(new ArrayList<>(Arrays.asList(courseData)));
 						
 						// create a student object
-						Student student = new Student(); //TODO add inputs
+						Student student = new Student(studentName, studentID, studentUsername, studentPassword);
 						
 						// if student doesn't exist already, add.
-						if (~(intel.containsStudent(student))) { // uses Student.equals() method for "contains" comparisons
+						if (!(intel.containsStudent(student))) { // uses Student.equals() method for "contains" comparisons
 							intel.addStudent(student);
 						}
 						else { // student already exists, can't add
-							System.out.println("Sorry, " + student.name + " already exists in this database.\n");
+							System.out.println("Sorry, " + student.getName() + " already exists in this database.\n");
 							break;
 						}
 						

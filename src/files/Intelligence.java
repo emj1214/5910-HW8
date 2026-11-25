@@ -2,6 +2,10 @@ package files;
 
 import java.util.*;
 
+import users.*;
+import courses.*;
+
+
 public class Intelligence {
 	
 	// instance vars
