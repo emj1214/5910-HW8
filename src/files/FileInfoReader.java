@@ -119,6 +119,16 @@ public class FileInfoReader {
 					// student password
 					studentPassword = studentData[3].strip();
 					
+					// confirm no inputs are empty
+					if (studentName.length()==0 
+							|| studentID.length()==0 
+							|| studentUsername.length()==0 
+							|| studentPassword.length()==0 ) {
+						
+						System.out.println("Empty inputs are not accepted. " + line + " could not be created as a student.\n");
+						break;
+					}
+					
 					// create a student object
 					Student student = new Student(studentName, studentID, studentUsername, studentPassword);
 					
@@ -140,11 +150,10 @@ public class FileInfoReader {
 						courseGrades.add(new ArrayList<>(Arrays.asList(courseData)));
 						
 						// TODO: associate courses with student.
+						student.addCourseToSchedule();
 						
 					}
-					
-					// TODO: associate courses with student
-					
+										
 					// if student doesn't exist already, add.
 					if (!(intel.containsStudent(student))) { // uses Student.equals() method for "contains" comparisons
 						intel.addStudent(student);
@@ -213,6 +222,16 @@ public class FileInfoReader {
 					
 					// professor password
 					professorPassword = professorData[3].strip();
+					
+					// confirm no inputs are empty
+					if (professorName.length()==0 
+							|| professorID.length()==0 
+							|| professorUsername.length()==0 
+							|| professorPassword.length()==0 ) {
+						
+						System.out.println("Empty inputs are not accepted. " + line + " could not be created as a professor.\n");
+						break;
+					}
 					
 					// create a professor object
 					Professor prof = new Professor(professorName, professorID, professorUsername, professorPassword);
@@ -294,6 +313,18 @@ public class FileInfoReader {
 					
 					// end time
 					endTime = courseData[5].strip();
+					
+					// confirm no inputs are empty
+					if (courseID.length()==0 
+							|| courseName.length()==0 
+							|| lecturer.length()==0 
+							|| days.length()==0
+							|| startTime.length()==0
+							|| endTime.length()==0 ) {
+						
+						System.out.println("Empty inputs are not accepted. " + line + " could not be created as a course.\n");
+						break;
+					}
 					
 					// capacity
 					// try to cast from string to int. If we can't cast, throw error and break this iteration of loop
@@ -454,9 +485,5 @@ public class FileInfoReader {
 		closeFile(courseReader);
 		
 	}
-	
-	
-	
-	
 
 }
