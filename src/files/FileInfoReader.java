@@ -130,7 +130,7 @@ public class FileInfoReader {
 					}
 					
 					// create a student object
-					Student student = new Student(studentName, studentID, studentUsername, studentPassword);
+					Student student = new Student(studentName, studentID, studentUsername, studentPassword, intel);
 					
 					// loop through courses, split by comma the colon
 					String[] courses = studentData[4].split(",");
@@ -150,7 +150,7 @@ public class FileInfoReader {
 						courseGrades.add(new ArrayList<>(Arrays.asList(courseData)));
 						
 						// TODO: associate courses with student.
-						student.addCourseToSchedule();
+						//@hammans help
 						
 					}
 										
@@ -234,7 +234,7 @@ public class FileInfoReader {
 					}
 					
 					// create a professor object
-					Professor prof = new Professor(professorName, professorID, professorUsername, professorPassword);
+					Professor prof = new Professor(professorName, professorID, professorUsername, professorPassword, intel);
 					
 					// if professor doesn't exist already, add.
 					if (!(intel.containsProfessor(prof))) { // uses Professor.equals() method for "contains" comparisons

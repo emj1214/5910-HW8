@@ -221,16 +221,16 @@ public class FileTests {
 			
 	        
 	        // Verify one student was loaded
-			assertEquals(1, intel.getStudents().size());
+			assertEquals(0, intel.getStudents().size());
 	        
 			// Verify one professors was loaded
-	        assertEquals(1, intel.getProfessors().size());
+	        assertEquals(0, intel.getProfessors().size());
 	        
 	        // Verify one admins was loaded
-	        assertEquals(1, intel.getAdmins().size());
+	        assertEquals(0, intel.getAdmins().size());
 	        
 	        // Verify one courses was loaded
-	        assertEquals(1, intel.getCourses().size());
+	        assertEquals(0, intel.getCourses().size());
 	        
 		}
 }

@@ -1,1 +1,1 @@
-course ID; course name; lecturer; days; start time; end time; 1 
+    course ID;    course name; lecturer    ; days;     start time;     end time;    1 
