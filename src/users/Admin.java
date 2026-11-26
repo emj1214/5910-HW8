@@ -42,7 +42,7 @@ public ArrayList<Course> viewCourses() {
  * @return list of students
  */
 public ArrayList<Student> viewStudents() {
-    return intel.getStudent();
+    return intel.getStudents();
 }
 
 /**
@@ -50,7 +50,7 @@ public ArrayList<Student> viewStudents() {
  * @return list of professors
  */
 public ArrayList<Professor> viewProfessors() {
-    return intel.getProfessor();
+    return intel.getProfessors();
 }
 
 
@@ -75,7 +75,7 @@ public boolean addCourse(Course newCourse) {
     // Check if the professor exists
     boolean professorExists = false;
 
-    for (Professor professor : intel.getProfessor()) {
+    for (Professor professor : intel.getProfessors()) {
         if (professor.getName().equals(newCourse.getLecturer())) {
             professorExists = true;
             break;
@@ -137,7 +137,7 @@ public boolean addStudent(Student newStudent) {
     }
 
     // Check for duplicate student ID or username
-    for (Student student : intel.getStudent()) {
+    for (Student student : intel.getStudents()) {
 
         if (student.getID().equals(newStudent.getID())
                 || student.getUserName().equals(newStudent.getUserName())) {
@@ -161,7 +161,7 @@ public boolean deleteStudent(String studentId) {
         return false;
     }
 
-    for (Student student : intel.getStudent()) {
+    for (Student student : intel.getStudents()) {
 
         if (student.getID().equals(studentId)) {
 
@@ -191,7 +191,7 @@ public boolean addProfessor(Professor newProfessor) {
     }
 
     // Check for duplicate professor ID or username
-    for (Professor professor : intel.getProfessor()) {
+    for (Professor professor : intel.getProfessors()) {
 
         if (professor.getID().equals(newProfessor.getID())
                 || professor.getUserName().equals(newProfessor.getUserName())) {
@@ -215,7 +215,7 @@ public boolean deleteProfessor(String professorId) {
         return false;
     }
 
-    for (Professor professor : intel.getProfessor()) {
+    for (Professor professor : intel.getProfessors()) {
 
         if (professor.getID().equals(professorId)) {
 
