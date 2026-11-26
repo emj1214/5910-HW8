@@ -3,6 +3,7 @@ package courses;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import users.Student;
+import files.Intelligence;
 
 public class CourseTests {
 
@@ -58,11 +59,13 @@ public class CourseTests {
 	@Test
 	public void testAddStudent() {
 
+		Intelligence intel = new Intelligence();
+
 	    Course course = new Course("CIT590", "Programming Languages and Techniques", "Brandon L Krakowsky", "MW", "16:30", "18:00", 110);
 
-	    Student student1 = new Student("StudentName1", "001", "testStudent01", "password590");
+	    Student student1 = new Student("StudentName1", "001", "testStudent01", "password590", intel);
 
-	    Student duplicateStudent = new Student("StudentName1", "001", "testStudent01", "password590");
+	    Student duplicateStudent = new Student("StudentName1", "001", "testStudent01", "password590“, intel);
 
 	    assertTrue(course.addStudent(student1));
 	    assertFalse(course.addStudent(student1));
@@ -75,14 +78,16 @@ public class CourseTests {
 	 */
 	@Test
 	public void testCourseCapacity() {
+		
+		Intelligence intel = new Intelligence();
 
 	    Course course = new Course("CIT590", "Programming Languages and Techniques","Brandon L Krakowsky", "MW", "16:30", "18:00", 2);
 
-	    Student student1 = new Student("StudentName1", "001", "testStudent01", "password590");
+	    Student student1 = new Student("StudentName1", "001", "testStudent01", "password590", intel);
 
-	    Student student2 = new Student("StudentName2", "002", "testStudent02", "password590");
+	    Student student2 = new Student("StudentName2", "002", "testStudent02", "password590", intel);
 
-	    Student student3 = new Student("StudentName3", "003", "testStudent03", "password590");
+	    Student student3 = new Student("StudentName3", "003", "testStudent03", "password590", intel);
 
 	    assertTrue(course.addStudent(student1));
 	    assertTrue(course.addStudent(student2));
@@ -97,10 +102,11 @@ public class CourseTests {
 	@Test
 	public void testRemoveStudent() {
 
+		Intelligence intel = new Intelligence();
+
 	    Course course = new Course("CIT590", "Programming Languages and Techniques","Brandon L Krakowsky", "MW", "16:30", "18:00", 110);
 
-	    Student student1 = new Student("StudentName1", "001", "testStudent01", "password590");
-
+	    Student student1 = new Student("StudentName1", "001", "testStudent01", "password590", intel);
 	    assertFalse(course.removeStudent(student1));
 
 	    assertTrue(course.addStudent(student1));
