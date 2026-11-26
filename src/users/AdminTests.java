@@ -38,7 +38,7 @@ public class AdminTests {
 
 		Admin admin = new Admin("AdminName1", "001", "testAdmin01", "password590", intel);
 
-		Professor professor = new Professor("Brandon L Krakowsky", "029", "testProf01", "password590");
+		Professor professor = new Professor("Brandon L Krakowsky", "029", "testProf01", "password590", intel);
 
 		intel.addProfessor(professor);
 
@@ -70,7 +70,7 @@ public class AdminTests {
 
 		Course course = new Course("CIT590", "Programming Languages and Techniques", "Brandon L Krakowsky", "MW", "16:30", "18:00", 110);
 
-		Student student = new Student("StudentName1", "001", "testStudent01", "password590");
+		Student student = new Student("StudentName1", "001", "testStudent01", "password590", intel);
 
 		// Course does not exist
 		assertFalse(admin.deleteCourse("CIT590"));
@@ -99,11 +99,11 @@ public class AdminTests {
 
 		Admin admin = new Admin("AdminName1", "001", "testAdmin01","password590", intel);
 
-		Student student1 = new Student("StudentName1", "003", "testStudent01", "password590");
+		Student student1 = new Student("StudentName1", "003", "testStudent01", "password590", intel);
 
-		Student sameId = new Student("StudentName2", "003", "testStudent02", "password590");
+		Student sameId = new Student("StudentName2", "003", "testStudent02", "password590", intel);
 
-		Student sameUsername = new Student("StudentName3", "004", "testStudent01", "password590");
+		Student sameUsername = new Student("StudentName3", "004", "testStudent01", "password590", intel);
 
 		assertTrue(admin.addStudent(student1));
 		assertFalse(admin.addStudent(sameId));
@@ -122,7 +122,7 @@ public class AdminTests {
 
 		Admin admin = new Admin("AdminName1", "001", "testAdmin01", "password590", intel);
 
-		Student student1 = new Student("StudentName1", "003", "testStudent01", "password590");
+		Student student1 = new Student("StudentName1", "003", "testStudent01", "password590", intel);
 
 		assertFalse(admin.deleteStudent("003"));
 
@@ -145,7 +145,7 @@ public class AdminTests {
 
 		Admin admin = new Admin("AdminName1", "001", "testAdmin01", "password590", intel);
 
-		Student student = new Student("StudentName1", "001", "testStudent01", "password590");
+		Student student = new Student("StudentName1", "001", "testStudent01", "password590", intel);
 
 		Course course = new Course("CIT590", "Programming Languages and Techniques", "Brandon L Krakowsky", "MW", "16:30", "18:00", 110);
 
@@ -172,11 +172,11 @@ public class AdminTests {
 
 		Admin admin = new Admin("AdminName1", "001", "testAdmin01", "password590", intel);
 
-		Professor professor1 = new Professor("Brandon L Krakowsky", "029", "testProf01", "password590");
+		Professor professor1 = new Professor("Brandon L Krakowsky", "029", "testProf01", "password590", intel);
 
-		Professor sameId = new Professor("Clayton Greenberg", "029", "testProf02", "password590");
+		Professor sameId = new Professor("Clayton Greenberg", "029", "testProf02", "password590", intel);
 
-		Professor sameUsername = new Professor("Arvind Bhusnurmath", "031", "testProf01", "password590");
+		Professor sameUsername = new Professor("Arvind Bhusnurmath", "031", "testProf01", "password590", intel);
 
 		assertTrue(admin.addProfessor(professor1));
 		assertFalse(admin.addProfessor(sameId));
@@ -196,7 +196,7 @@ public class AdminTests {
 
 		Admin admin = new Admin("AdminName1", "001", "testAdmin01", "password590", intel);
 
-		Professor professor = new Professor("Brandon L Krakowsky", "029", "Krakowsky", "password590");
+		Professor professor = new Professor("Brandon L Krakowsky", "029", "Krakowsky", "password590", intel);
 
 		Course course = new Course("CIT590", "Programming Languages and Techniques", "Brandon L Krakowsky", "MW", "16:30", "18:00", 110);
 
