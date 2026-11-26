@@ -7,10 +7,6 @@ import courses.*;
 
 
 public class FileInfoReader {
-	
-	public FileInfoReader() {
-		// TODO Auto-generated constructor stub
-	}
 		
 	/***
 	 * opens a file if it exists
@@ -73,9 +69,9 @@ public class FileInfoReader {
 	}
 	
 	/***
-	 * processes a file of user info line by line and create objects 
+	 * processes a file of student info line by line and create objects 
 	 * @param bufferedReader: buffered reader object, which should be an opened user data file
-	 * @param intel: the intelligence object containing the students, profs, and admins array lists
+	 * @param intel: the intelligence object containing the students array lists
 	 */
 	private void processStudents(BufferedReader bufferedReader, Intelligence intel) {
 		
@@ -123,6 +119,9 @@ public class FileInfoReader {
 					// student password
 					studentPassword = studentData[3].strip();
 					
+					// create a student object
+					Student student = new Student(studentName, studentID, studentUsername, studentPassword);
+					
 					// loop through courses, split by comma the colon
 					String[] courses = studentData[4].split(",");
 					for (int i=0; i<courses.length; i++) {
@@ -140,18 +139,19 @@ public class FileInfoReader {
 						courseData[1] = courseData[1].strip();
 						courseGrades.add(new ArrayList<>(Arrays.asList(courseData)));
 						
-						// create a student object
-						Student student = new Student(studentName, studentID, studentUsername, studentPassword);
+						// TODO: associate courses with student.
 						
-						// if student doesn't exist already, add.
-						if (!(intel.containsStudent(student))) { // uses Student.equals() method for "contains" comparisons
-							intel.addStudent(student);
-						}
-						else { // student already exists, can't add
-							System.out.println("Sorry, " + student.getName() + " already exists in this database.\n");
-							break;
-						}
-						
+					}
+					
+					// TODO: associate courses with student
+					
+					// if student doesn't exist already, add.
+					if (!(intel.containsStudent(student))) { // uses Student.equals() method for "contains" comparisons
+						intel.addStudent(student);
+					}
+					else { // student already exists, can't add
+						System.out.println("Sorry, " + student.getName() + " already exists in this database. Update or delete the student instead.\n");
+						break;
 					}
 					
 				}
@@ -159,10 +159,245 @@ public class FileInfoReader {
 			}
 		}
 		catch (IOException e) { // if there's an IO related error
-			System.out.println("There was an error reading the lines.\n");
+			System.out.println("There was an error reading the lines from the student input file.\n");
 		}
 
 	}
+	
+	/***
+	 * processes a file of professor info line by line and create objects 
+	 * @param bufferedReader: buffered reader object, which should be an opened user data file
+	 * @param intel: the intelligence object containing the profs array lists
+	 */
+	private void processProfessors(BufferedReader bufferedReader, Intelligence intel) {
+		
+		// reads lines expecting students
+		
+		String line;
+		
+		try {
+			while ((line = bufferedReader.readLine()) != null) { // while there is still another line to read...
+				
+				// set temp vars to null
+				String professorID = null;
+				String professorName = null;
+				String professorUsername = null;
+				String professorPassword = null;
+				
+				/*
+				 * confirm format for each line
+				 * expected format: "prof name; prof ID; prof username; password"
+				 * 
+				 * if there are exactly 4 inputs, assuming the correct order, creates the professor object
+				 * if the professor doesn't already exist, it will add the professor to the database
+				 * if the professor already exists, it will print a friendly message
+				 */
+				
+				// split string into array
+				String[] professorData = line.split(";"); 
+				
+				if (professorData.length != 4) { // not exactly 4 inputs, must have bad data
+					System.out.println("Sorry, the input...\n\t" + line + "\n...does not have the right number of inputs. This professor cannot be created.\n");
+					break;
+				}
+				else {
+					
+					// professor name
+					professorName = professorData[0].strip();
+					
+					// professor ID
+					professorID = professorData[1].strip();
+					
+					// professor username
+					professorUsername = professorData[2].strip();
+					
+					// professor password
+					professorPassword = professorData[3].strip();
+					
+					// create a professor object
+					Professor prof = new Professor(professorName, professorID, professorUsername, professorPassword);
+					
+					// if professor doesn't exist already, add.
+					if (!(intel.containsProfessor(prof))) { // uses Professor.equals() method for "contains" comparisons
+						intel.addProfessor(prof);
+					}
+					else { // professor already exists, can't add
+						System.out.println("Sorry, " + prof.getName() + " already exists in this database. Update or delete the professor instead.\n");
+						break;
+					}
+				}
+				
+			}
+		}
+		catch (IOException e) { // if there's an IO related error
+			System.out.println("There was an error reading the lines from the professor input file.\n");
+		}
+
+	}
+	
+	
+	/***
+	 * processes a file of course info line by line and create objects 
+	 * @param bufferedReader: buffered reader object, which should be an opened course data file
+	 * @param intel: the intelligence object containing the courses array lists
+	 */
+	private void processCourses(BufferedReader bufferedReader, Intelligence intel) {
+		
+		// reads lines expecting students
+		
+		String line;
+		
+		try {
+			while ((line = bufferedReader.readLine()) != null) { // while there is still another line to read...
+				
+				// set temp vars to null/impossible value
+				String courseID = null;
+				String courseName = null;
+				String lecturer = null;
+				String days = null;
+				String startTime = null;
+				String endTime = null;
+				int capacity = -1;
+				
+				/*
+				 * confirm format for each line
+				 * expected format: "course ID; course name; lecturer; days; start time; end time; capacity"
+				 * 
+				 * if there are exactly 4 inputs, assuming the correct order, creates the course object
+				 * if the course doesn't already exist, it will add the course to the database
+				 * if the course already exists, it will print a friendly message
+				 */
+				
+				// split string into array
+				String[] courseData = line.split(";"); 
+				
+				if (courseData.length != 7) { // not exactly 7 inputs, must have bad data
+					System.out.println("Sorry, the input...\n\t" + line + "\n...does not have the right number of inputs. This course cannot be created.\n");
+					break;
+				}
+				else {
+					
+					// course ID
+					courseID = courseData[0].strip();
+					
+					// course name
+					courseName = courseData[1].strip();
+					
+					// lecturer
+					lecturer = courseData[2].strip();
+					
+					// days
+					days = courseData[3].strip();
+					
+					// start time
+					startTime = courseData[4].strip();
+					
+					// end time
+					endTime = courseData[5].strip();
+					
+					// capacity
+					// try to cast from string to int. If we can't cast, throw error and break this iteration of loop
+					try {
+					    capacity = Integer.parseInt(courseData[6].strip());
+					} catch (NumberFormatException e) {
+					    System.out.println("Sorry, " + courseData[6].strip() + " is not a valid integer. This course (" + courseID + ": " + courseName + ") cannot be created.\n");
+					    break;
+					}
+					
+					// create a course object
+					Course course = new Course(courseID, courseName, lecturer,
+			                  days, startTime, endTime, capacity);
+					
+					// if course doesn't exist already, add.
+					if (!(intel.containsCourse(course))) { // uses Course.equals() method for "contains" comparisons
+						intel.addCourse(course);
+					}
+					else { // professor already exists, can't add
+						System.out.println("Sorry, " + courseID + ": " + courseName + " already exists in this database. Update or delete the course instead.\n");
+						break;
+					}
+				}
+				
+			}
+		}
+		catch (IOException e) { // if there's an IO related error
+			System.out.println("There was an error reading the lines from the course input file.\n");
+		}
+
+	}
+	
+	
+	/***
+	 * processes a file of admin info line by line and create objects 
+	 * @param bufferedReader: buffered reader object, which should be an opened user data file
+	 * @param intel: the intelligence object containing the admins array lists
+	 */
+	private void processAdmins(BufferedReader bufferedReader, Intelligence intel) {
+		
+		// reads lines expecting students
+		
+		String line;
+		
+		try {
+			while ((line = bufferedReader.readLine()) != null) { // while there is still another line to read...
+				
+				// set temp vars to null
+				String adminID = null;
+				String adminName = null;
+				String adminUsername = null;
+				String adminPassword = null;
+				
+				/*
+				 * confirm format for each line
+				 * expected format: "admin ID; admin name; admin username; password"
+				 * 
+				 * if there are exactly 4 inputs, assuming the correct order, creates the admin object
+				 * if the admin doesn't already exist, it will add the admin to the database
+				 * if the admin already exists, it will print a friendly message
+				 */
+				
+				// split string into array
+				String[] adminData = line.split(";"); 
+				
+				if (adminData.length != 4) { // not exactly 4 inputs, must have bad data
+					System.out.println("Sorry, the input...\n\t" + line + "\n...does not have the right number of inputs. This admin cannot be created.\n");
+					break;
+				}
+				else {
+					
+					// admin name
+					adminName = adminData[0].strip();
+					
+					// admin ID
+					adminID = adminData[1].strip();
+					
+					// admin username
+					adminUsername = adminData[2].strip();
+					
+					// admin password
+					adminPassword = adminData[3].strip();
+					
+					// create a admin object
+					Admin admin = new Admin(adminName, adminID, adminUsername, adminPassword, intel);
+					
+					// if admin doesn't exist already, add.
+					if (!(intel.containsAdmin(admin))) { // uses Admin.equals() method for "contains" comparisons
+						intel.addAdmin(admin);
+					}
+					else { // admin already exists, can't add
+						System.out.println("Sorry, " + admin.getName() + " already exists in this database. Update or delete the admin instead.\n");
+						break;
+					}
+				}
+				
+			}
+		}
+		catch (IOException e) { // if there's an IO related error
+			System.out.println("There was an error reading the lines from the admin input file.\n");
+		}
+
+	}
+	
 	
 	/***
 	 * reads and processes files
@@ -183,26 +418,38 @@ public class FileInfoReader {
 		if (studentReader!=null) {
 			processStudents(studentReader, intel);
 		}
+		else {
+			System.out.println("There is no student data to process.\n");
+		}
 		closeFile(studentReader);
 		
 		// process professors - open reader, try to process, close reader
 		BufferedReader profReader = readFile(profFile);
 		if (profReader!=null) {
-			// TODO process profs
+			processProfessors(profReader, intel);
+		}
+		else {
+			System.out.println("There is no professor data to process.\n");
 		}
 		closeFile(profReader);
 		
 		// process admins - open reader, try to process, close reader
 		BufferedReader adminReader = readFile(adminFile);
 		if (adminReader!=null) {
-			// TODO process admins
+			processAdmins(adminReader, intel);
+		}
+		else {
+			System.out.println("There is no admin data to process.\n");
 		}
 		closeFile(adminReader);
 		
 		// process courses - open reader, try to process, close reader
 		BufferedReader courseReader = readFile(courseFile);
 		if (courseReader!=null) {
-			// TODO process courses
+			processCourses(courseReader, intel);
+		}
+		else {
+			System.out.println("There is no course data to process.\n");
 		}
 		closeFile(courseReader);
 		
