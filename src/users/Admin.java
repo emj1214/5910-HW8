@@ -6,7 +6,6 @@ import files.Intelligence;
 
 public class Admin extends User {
 	
-	private Intelligence intel;
     /**
      * Creates admin with the info shared by all users.
      * @param name admin's name
@@ -16,8 +15,7 @@ public class Admin extends User {
      */
     public Admin(String name, String id,
                  String userName, String password,Intelligence intel) {
-        super(name, id, userName, password);
-        this.intel = intel;
+        super(name, id, userName, password, intel);
     }
 
 /**
