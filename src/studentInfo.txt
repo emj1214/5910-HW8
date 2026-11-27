@@ -1,1 +1,2 @@
 001; StudentName1; testStudent01; password590; CIS191: A, CIS320: A
+002; Emma Johnson; emj1214; 123; CIT591:A
