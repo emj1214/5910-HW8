@@ -30,7 +30,7 @@ public class Controller {
 		scanner = new Scanner(System.in);
 	}
 	
-	/*
+	/***
 	 * Runs the program
 	 */
 	private void run() {
@@ -68,6 +68,8 @@ public class Controller {
 			}
 			
 		}
+		
+		return;
 		
 	}
 	
@@ -359,7 +361,7 @@ public class Controller {
 		
 		Controller controller = new Controller();
 		controller.run();
-
+		return;
 	}
 
 }
