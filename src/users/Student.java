@@ -28,6 +28,8 @@ import courses.Course;
 import files.Intelligence;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
+
 
 /**
  * A Student is a type of User. "extends User" makes User the parent class of Student, providing
@@ -43,9 +45,9 @@ public class Student extends User {
 	private ArrayList<Course> courses;
 
 	/**
-	 * Defines (but does not create) a variable that holds the classes this member has taken in
+	 * Defines (but does not create) a variable that holds the classes this student has taken in
 	 * the past. The HashMap called pastClasses keeps pairs which are a key and a value. This is
-	 * kept a private method so only code in Student can use it. Here it makes a variable not a
+	 * a private variable so only code in Student can use it. Here it makes a variable not a
 	 * HashMap. It holds null until the constructor runs.
 	 */
 	private HashMap<String, String> pastClasses;
@@ -72,9 +74,9 @@ public class Student extends User {
 		//this makes an empty ArrayList of type Courses
 		this.courses = new ArrayList<Course>();
 
-		//this creates a new Hashmap with no pairs and stores it in the variable pastLevels of the
+		//this creates a new Hashmap with no pairs and stores it in the variable pastClasses of the
 		//student being made
-		//this.pastClasses is the variable made earlier of the member being made
+		//this.pastClasses is the variable made earlier of the student being made
 		this.pastClasses = new HashMap<String, String>();
 	}
 
@@ -111,28 +113,10 @@ public class Student extends User {
 	 */
 	public String addCourseToSchedule(String courseID) {
 
-		//defines a course object called wanted with value of null
-		Course wanted = null;
+		//asks the method findClass of this student for the class with this courseID
+		Course wanted = this.findClass(courseID);
 
-		// pulls all courses in the intel object and saves them as an ArrayList of Courses
-		// called all
-		ArrayList<Course> all = this.intel.getCourses();
-
-		//creates a loop of an index i starting from 0 that runs as long as it is smaller
-		// than the size of all
-		for (int i = 0; i < all.size(); i++) {
-			// asks if the course in all is the same as what was passed in as "courseID"
-			// all.get(i) gives the course at place i
-			// adding .getCourseID() gives the ID
-			if (all.get(i).getCourseId().equals(courseID)) {
-				//this keeps the class that was found
-				wanted = all.get(i);
-
-				//ends the loop once a match is found
-				break;
-			}
-		}
-		//if we did not find the course in the registry
+		//if we did not find the course in the class registry
 		if (wanted == null) {
 
 			return "No class with ID " + courseID + " found in the course registry.";
@@ -174,6 +158,7 @@ public class Student extends User {
 	/**
 	 * Removes a course from a student's schedule and the student from the class. Checks to make sure
 	 * the student already has the class on his/her schedule before removing them.
+	 *
 	 * @param courseID the passed in course ID from the student
 	 * @return a line that says what was done, such as "Course dropped successfully"
 	 */
@@ -223,23 +208,99 @@ public class Student extends User {
 
 	/**
 	 * Keeps a past grade for the student.
+	 *
 	 * @param courseID the course id for the class
-	 * @param grade that was earned, such as "A"
+	 * @param grade    that was earned, such as "A"
 	 */
 	public void addPastCourses(String courseID, String grade) {
 
 		//puts a pair in the HashMap of this student
-		//this.pastClasses is the HashMap of the student the method was caled on
+		//this.pastClasses is the HashMap of the student the method was called on
 		//.put is a Hashmap method that takes a key and a value, in that order, and keeps them as
 		//a pair
 		this.pastClasses.put(courseID, grade);
 	}
 
-	//gives back the HashMap of the student. It is the HashMap itself, not a copy of it
+	/**
+	 * Gives back the HashMap of the student. It is the HashMap itself, not a copy of it
+	 *
+	 * @return the HashMap of the student
+	 */
 	public HashMap<String, String> getPastClasses() {
 		return this.pastClasses;
 	}
 
+	/**
+	 * Gives a line of text for each past class the student has taken
+	 * @return the lines, such as "Grade of CIT590 Programming Languages and Techniques: B".
+	 */
+	public ArrayList<String> pastGrades() {
+		//Makes a new, empty list of text and stores it in the variable lines
+		ArrayList<String> lines = new ArrayList<String>();
+
+		//creates a loop that takes each pair of the HashMap, one pair for each pass
+		//Entry<String, String> is the type of one pair, key and then value
+		// this.pastClasses is the HashMap of this student
+		//entrySet() is a method of HashMap that gives every pair
+		for (Entry<String, String> pair : this.pastClasses.entrySet()) {
+
+			//takes the key from the pair and stores in the variable courseID
+			String courseID = pair.getKey();
+
+			//takes the value out of the pair and stores it in the variable grade
+			String grade = pair.getValue();
+
+			//calls the method findClass on this student with the courseID and stores what comes back in
+			//a Course variable called found
+			Course found = this.findClass(courseID);
+
+			//if no class has the courseID
+			if (found == null) {
+
+				//adds a line that has no course name in it to the list lines since there is no class to ask
+				lines.add("Grade of " + courseID + ": " + grade);
+
+			} else {
+
+				//adds a line that has a course name in it to the list lines
+				lines.add("Grade of " + courseID + " " + found.getCourseName() + ": " + grade);
+			}
+		}
+		//gives the list "lines" back
+		return lines;
+	}
+
+	/**
+	 * Finds one class of the school by its courseID
+	 * @param courseID the code number for the course, such as "CIT591"
+	 * @return the class or null when no class has the course ID
+	 */
+	private Course findClass(String courseID) {
+
+		//defines a course object called wanted with value of null
+		Course wanted = null;
+
+		// pulls all courses in the intel object and saves them as an ArrayList of Courses
+		// called all
+		ArrayList<Course> all = this.intel.getCourses();
+
+		//creates a loop of an index i starting from 0 that runs as long as it is smaller
+		// than the size of all
+		for (int i = 0; i < all.size(); i++) {
+			// asks if the course in all is the same as what was passed in as "courseID"
+			// all.get(i) gives the course at place i
+			// adding .getCourseID() gives the ID
+			if (all.get(i).getCourseId().equals(courseID)) {
+				//this keeps the class that was found
+				wanted = all.get(i);
+
+				//ends the loop once a match is found
+				break;
+			}
+		}
+		//gives back what the loop found
+		return wanted;
+	}
 
 	/**
 	 * Gives a line of text including the user's name and id and their courses.
