@@ -26,6 +26,8 @@ import java.util.*;
 
 import courses.Course;
 import files.Intelligence;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A Student is a type of User. "extends User" makes User the parent class of Student, providing
@@ -39,6 +41,14 @@ public class Student extends User {
 	 * A private ArrayList of type Course called "courses" the Student has signed up for.
 	 */
 	private ArrayList<Course> courses;
+
+	/**
+	 * Defines (but does not create) a variable that holds the classes this member has taken in
+	 * the past. The HashMap called pastClasses keeps pairs which are a key and a value. This is
+	 * kept a private method so only code in Student can use it. Here it makes a variable not a
+	 * HashMap. It holds null until the constructor runs.
+	 */
+	private HashMap<String, String> pastClasses;
 
 	//constructor
 
@@ -61,6 +71,11 @@ public class Student extends User {
 		super(name, id, userName, password, intel);
 		//this makes an empty ArrayList of type Courses
 		this.courses = new ArrayList<Course>();
+
+		//this creates a new Hashmap with no pairs and stores it in the variable pastLevels of the
+		//student being made
+		//this.pastClasses is the variable made earlier of the member being made
+		this.pastClasses = new HashMap<String, String>();
 	}
 
 	//methods
@@ -205,6 +220,26 @@ public class Student extends User {
 		//the class list of this student
 		return this.courses;
 	}
+
+	/**
+	 * Keeps a past grade for the student.
+	 * @param courseID the course id for the class
+	 * @param grade that was earned, such as "A"
+	 */
+	public void addPastCourses(String courseID, String grade) {
+
+		//puts a pair in the HashMap of this student
+		//this.pastClasses is the HashMap of the student the method was caled on
+		//.put is a Hashmap method that takes a key and a value, in that order, and keeps them as
+		//a pair
+		this.pastClasses.put(courseID, grade);
+	}
+
+	//gives back the HashMap of the student. It is the HashMap itself, not a copy of it
+	public HashMap<String, String> getPastClasses() {
+		return this.pastClasses;
+	}
+
 
 	/**
 	 * Gives a line of text including the user's name and id and their courses.
