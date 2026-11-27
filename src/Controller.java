@@ -4,6 +4,7 @@ import files.FileInfoReader;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import courses.Course;
 
 public class Controller {
 	
@@ -232,7 +233,9 @@ public class Controller {
 			String response = scanner.nextLine();
 			
 			if (response.strip().equalsIgnoreCase("1")) {
-				//TODO: view all courses
+    			for (Course course : intel.getCourses()) {
+        			System.out.println(course);
+    			}
 			}
 			else if (response.strip().equalsIgnoreCase("2")) {
 				//TODO add courses to list
@@ -322,26 +325,131 @@ public class Controller {
 			String response = scanner.nextLine();
 			
 			if (response.strip().equalsIgnoreCase("1")) {
-				//TODO: view all courses
+				for (Course course : currentAdmin.viewCourses()) {
+					System.out.println(course);
+				}
 			}
+				
 			else if (response.strip().equalsIgnoreCase("2")) {
-				//TODO add courses to list
+				System.out.println("Enter course ID:");
+				String courseId = scanner.nextLine().strip();
+				
+				System.out.println("Enter course name:");
+				String courseName = scanner.nextLine().strip();
+
+				System.out.println("Enter professor name:");
+				String lecturer = scanner.nextLine().strip();
+				
+				System.out.println("Enter meeting days:");
+				String days = scanner.nextLine().strip();
+
+				System.out.println("Enter start time (HH:mm):");
+				String startTime = scanner.nextLine().strip();
+
+				System.out.println("Enter end time (HH:mm):");
+				String endTime = scanner.nextLine().strip();
+
+				System.out.println("Enter course capacity:");
+				String capacityInput = scanner.nextLine().strip();
+
+				try {
+					int capacity = Integer.parseInt(capacityInput);
+
+					if (capacity <= 0) {
+						System.out.println("Invalid capacity.");
+					} else {
+						Course newCourse = new Course(courseId, courseName, lecturer,days, startTime, endTime, capacity);
+
+						if (currentAdmin.addCourse(newCourse)) {
+							System.out.println("Course added successfully.");
+						} else {
+							System.out.println("Unable to add course.");
+						}
+					}
+
+				} catch (NumberFormatException e) {
+					System.out.println("Invalid capacity.");
+				}
 			}
+				
 			else if (response.strip().equalsIgnoreCase("3")) {
-				//TODO view enrolled courses
+				System.out.println("Enter course ID:");
+				String courseId = scanner.nextLine().strip();
+
+				if (currentAdmin.deleteCourse(courseId)) {
+					System.out.println("Course deleted successfully.");
+				} else {
+					System.out.println("Unable to delete course.");
+				}
 			}
+				
 			else if (response.strip().equalsIgnoreCase("4")) {
-				//TODO drop course from list
+				System.out.println("Enter professor name:");
+				String name = scanner.nextLine().strip();
+
+				System.out.println("Enter professor ID:");
+				String id = scanner.nextLine().strip();
+
+				System.out.println("Enter username:");
+				String userName = scanner.nextLine().strip();
+
+				System.out.println("Enter password:");
+				String password = scanner.nextLine().strip();
+
+				Professor newProfessor = new Professor(name, id, userName, password, intel);
+				
+				if (currentAdmin.addProfessor(newProfessor)) {
+					System.out.println("Professor added successfully.");
+				} else {
+					System.out.println("Unable to add professor.");
+				}
 			}
+				
 			else if (response.strip().equalsIgnoreCase("5")) {
-				//TODO view grades
+				System.out.println("Enter professor ID:");
+				
+				String professorId = scanner.nextLine().strip();
+				
+				if (currentAdmin.deleteProfessor(professorId)) {
+					System.out.println("Professor deleted successfully.");
+				} else {
+					System.out.println("Unable to delete professor.");
+				}
 			}
+				
 			else if (response.strip().equalsIgnoreCase("6")) {
-				//TODO drop course from list
+				System.out.println("Enter student name:");
+				String name = scanner.nextLine().strip();
+				
+				System.out.println("Enter student ID:");
+				String id = scanner.nextLine().strip();
+
+				System.out.println("Enter username:");
+				String userName = scanner.nextLine().strip();
+
+				System.out.println("Enter password:");
+				String password = scanner.nextLine().strip();
+
+				Student newStudent = new Student(name, id, userName, password, intel);
+
+				if (currentAdmin.addStudent(newStudent)) {
+					System.out.println("Student added successfully.");
+				} else {
+					System.out.println("Unable to add student.");
+				}
 			}
+				
 			else if (response.strip().equalsIgnoreCase("7")) {
-				//TODO view grades
+				System.out.println("Enter student ID:");
+				String studentId = scanner.nextLine().strip();
+
+				if (currentAdmin.deleteStudent(studentId)) {
+					System.out.println("Student deleted successfully.");
+				} else {
+					System.out.println("Unable to delete student.");
+				}
 			}
+				
 			else if (response.strip().equalsIgnoreCase("Q")) {
 				System.out.println("Logging you out!\n");
 				currentAdmin = null;
