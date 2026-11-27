@@ -396,11 +396,11 @@ public class FileInfoReader {
 				}
 				else {
 					
-					// admin name
-					adminName = adminData[0].strip();
-					
 					// admin ID
-					adminID = adminData[1].strip();
+					adminID = adminData[0].strip();
+					
+					// admin name
+					adminName = adminData[1].strip();
 					
 					// admin username
 					adminUsername = adminData[2].strip();

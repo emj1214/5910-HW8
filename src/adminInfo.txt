@@ -1,1 +1,2 @@
 001; admin; admin01; password590
+002; Test Case; test; 123
