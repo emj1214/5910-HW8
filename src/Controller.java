@@ -238,7 +238,37 @@ public class Controller {
     			}
 			}
 			else if (response.strip().equalsIgnoreCase("2")) {
-				//TODO add courses to list
+				//TODO prompt for course ID, loop for valid input or quit
+				//call method to add
+				boolean waitForCourse = true;
+				
+				while (waitForCourse) {
+					
+					// prompt for course
+					System.out.println("Enter a course ID (or q to exit): ");
+					
+					// read input from user
+					String courseID = scanner.nextLine().strip();
+					
+					// if q, quit
+					if (courseID.equalsIgnoreCase("q")) {
+						System.out.println("Exiting the course adder.\n");
+						waitForCourse=false;
+					}
+					
+					// else try to add
+					currentStudent.addCourseToSchedule(courseID);
+					
+					// try again? 
+					System.out.println("Exit course adder? (y to exit, or any key to continue) \n");
+					
+					// read input from user
+					String yn = scanner.nextLine().strip();
+					if (yn.equalsIgnoreCase("y")) {
+						waitForCourse=false;
+					}
+				}
+				
 			}
 			else if (response.strip().equalsIgnoreCase("3")) {
 				//TODO view enrolled courses
@@ -257,6 +287,9 @@ public class Controller {
 			else {
 				System.out.println("Sorry, that was not a valid input. Please try again.\n");
 			}
+			
+			// extra lines for formatting
+			System.out.println("\n\n");
 			
 		}
 		
@@ -285,10 +318,10 @@ public class Controller {
 			String response = scanner.nextLine();
 			
 			if (response.strip().equalsIgnoreCase("1")) {
-				//TODO: view all courses
+				//TODO: view given courses
 			}
 			else if (response.strip().equalsIgnoreCase("2")) {
-				//TODO add courses to list
+				//TODO students in given course
 			}
 			else if (response.strip().equalsIgnoreCase("Q")) {
 				System.out.println("Logging you out!\n");
