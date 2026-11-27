@@ -54,18 +54,14 @@ public class Controller {
 				studentMenu();
 			}
 			else if (response.strip().equalsIgnoreCase("2")) {
-				//TODO route to prof login
+				profMenu();
 			}
 			else if (response.strip().equalsIgnoreCase("3")) {
-				//TODO route to admin login
+				adminMenu();
 			}
 			else if (response.strip().equalsIgnoreCase("Q")) {
 				System.out.println("Goodbye!\n");
 				waitForInput=false;
-			}
-			else if (response.strip().equalsIgnoreCase("?")) {
-				System.out.println("this is a help message"
-						);
 			}
 			else {
 				System.out.println("Sorry, that was not a valid input. Please try again.\n");
@@ -86,7 +82,6 @@ public class Controller {
 				+ "2 -- Login as Professor\n"
 				+ "3 -- Login as Admin\n"
 				+ "Q -- quit\n"
-				+ "? -- help"
 				+ "\n"
 				+ "Please enter your option: "
 				);
@@ -111,7 +106,7 @@ public class Controller {
 			username = username.strip();
 			
 			if (username.equalsIgnoreCase("q")) {
-				System.out.println("Exiting student menu");
+				System.out.println("Exiting login prompt\n");
 				return null;
 			}
 			
@@ -145,7 +140,7 @@ public class Controller {
 			password = password.strip();
 			
 			if (password.equalsIgnoreCase("q")) {
-				System.out.println("Exiting student menu");
+				System.out.println("Exiting login prompt.\n");
 				return null;
 			}
 			else if (user.passwordsMatch(password)) {
@@ -171,8 +166,8 @@ public class Controller {
 				+ "2 -- Add courses to your list\n"
 				+ "3 -- View enrolled courses\n"
 				+ "4 -- Drop courses in your list\n"
-				+ "5 -- View grades"
-				+ "6 -- Return to previous menu"
+				+ "5 -- View grades\n"
+				+ "Q -- Return to previous menu"
 				+ "\n"
 				+ "Please enter your option: "
 				);
@@ -187,7 +182,7 @@ public class Controller {
 				+ dash25
 				+ "1 -- View given courses\n"
 				+ "2 -- View student list of the given course\n"
-				+ "3 -- Return to previous menu"
+				+ "Q -- Return to previous menu\n"
 				+ "\n"
 				+ "Please enter your option: "
 				);
@@ -207,7 +202,7 @@ public class Controller {
 				+ "5 -- Delete professor\n"
 				+ "6 -- Add new student\n"
 				+ "7 -- Delete student\n"
-				+ "8 -- Return to previous menu"
+				+ "Q -- Return to previous menu\n"
 				+ "\n"
 				+ "Please enter your option: "
 				);
@@ -249,7 +244,7 @@ public class Controller {
 			else if (response.strip().equalsIgnoreCase("5")) {
 				//TODO view grades
 			}
-			else if (response.strip().equalsIgnoreCase("6")) {
+			else if (response.strip().equalsIgnoreCase("Q")) {
 				System.out.println("Logging you out!\n");
 				currentStudent = null;
 				waitForInput=false;
@@ -290,7 +285,7 @@ public class Controller {
 			else if (response.strip().equalsIgnoreCase("2")) {
 				//TODO add courses to list
 			}
-			else if (response.strip().equalsIgnoreCase("3")) {
+			else if (response.strip().equalsIgnoreCase("Q")) {
 				System.out.println("Logging you out!\n");
 				currentProf = null;
 				waitForInput=false;
@@ -304,7 +299,7 @@ public class Controller {
 		return;
 	}
 	
-	private void adminMneu() {
+	private void adminMenu() {
 		// prompt login and set current admin
 		Admin currentAdmin = login(intel.getAdmins());
 		
@@ -319,7 +314,7 @@ public class Controller {
 		while (waitForInput) {
 			
 			//print main menu
-			printStudentMenu(currentAdmin.getName());
+			printAdminMenu(currentAdmin.getName());
 			
 			// read input from user
 			String response = scanner.nextLine();
@@ -345,7 +340,7 @@ public class Controller {
 			else if (response.strip().equalsIgnoreCase("7")) {
 				//TODO view grades
 			}
-			else if (response.strip().equalsIgnoreCase("8")) {
+			else if (response.strip().equalsIgnoreCase("Q")) {
 				System.out.println("Logging you out!\n");
 				currentAdmin = null;
 				waitForInput=false;
